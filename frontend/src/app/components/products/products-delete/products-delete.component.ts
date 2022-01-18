@@ -4,11 +4,12 @@ import { Product } from '../product.model';
 import { ProductsService } from '../products.service';
 
 @Component({
-  selector: 'app-products-update',
-  templateUrl: './products-update.component.html',
-  styleUrls: ['./products-update.component.css']
+  selector: 'app-products-delete',
+  templateUrl: './products-delete.component.html',
+  styleUrls: ['./products-delete.component.css']
 })
-export class ProductsUpdateComponent implements OnInit {
+
+export class ProductsDeleteComponent implements OnInit {
 
   product: Product = {
     name: '',
@@ -26,9 +27,9 @@ export class ProductsUpdateComponent implements OnInit {
     })
   }
 
-  updateProduct(): void {
-    this.productService.update(this.product).subscribe(() => {
-      this.productService.showMessage('Product updated');
+  deleteProduct(): void {
+    this.product.id && this.productService.delete(this.product.id).subscribe(() => {
+      this.productService.showMessage('Product deleted');
       this.router.navigate(['/products']);
     })
   }
